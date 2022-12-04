@@ -15,17 +15,13 @@ export class App extends Component {
 
   formDataHendler = data => {
 
-    this.state.contacts.map(i => {
-      if (i.name.includes(data.name)) {
-  
-        alert(`${i.name} is already in contact`)
-        
-  }
-})
-
-    this.setState(({ contacts }) => ({
+    this.state.contacts.map(i => i.name.includes(data.name)
+      ? alert(`${i.name} is already in contact`)
+      : this.setState(({ contacts }) => ({
       contacts: [data, ...contacts]
     }))
+  
+)
   };
 
   onChangeFifter = e => {
