@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Phonebook } from "./Phonebook";
 import { Contacts } from "./Contacts";
-import { nanoid } from 'nanoid'
+// import { nanoid } from 'nanoid'
 
 export class App extends Component {
   state = {
@@ -14,28 +14,16 @@ export class App extends Component {
     filter:'',
   }
 
-  // formDataHendler = data => {
-  //   this.setState(prevState => ({
-  //     contacts: prevState.contacts.filter(this.state.contacts.find(i => i.name.includes(data.name)
-  //     ? alert(`${i.name} is already in contact`)
-  //     : this.setState(({ contacts }) => ({
-  //     contacts: [data, ...contacts]
-  //   }))
-  // ))
-  //   }))
-
-  // };
-  
-formDataHendler = data => {
- this.state.contacts.map(i => {
- if (i.name.includes(data.name)) {
-   alert(`${i.name} is already in contact`)
-   return
-  }
-})
- this.setState(({ contacts }) => ({
- contacts: [data, ...contacts]
-    }))
+ formDataHendler = data => {
+    const { contacts } = this.state;
+    if (contacts.find(contact => contact.name === data.name)) {
+      alert(`${data.name} is already in contact`);
+      return
+    } else {
+      this.setState(({ contacts }) => ({
+        contacts: [data, ...contacts],
+      }));
+    }
   };
 
   onChangeFifter = e => {
@@ -53,7 +41,7 @@ formDataHendler = data => {
 
     const normolazed = filter.toLowerCase(); 
 
-    const filteredTodos = contacts.filter(todo=>todo.name.toLowerCase().includes(normolazed))
+    const filteredTodos = contacts.filter(todo => todo.name.toLowerCase().includes(normolazed));
     
     return (
       <div

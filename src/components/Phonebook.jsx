@@ -20,6 +20,7 @@ export class Phonebook extends Component {
   submitForm = e => {
     e.preventDefault();
     this.props.props(this.state)
+    console.log(this.state)
     this.setState({name: '', number:''})
   }
 
